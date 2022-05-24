@@ -1,19 +1,38 @@
 {
-  "name": "web____in-brief",
+  "name": "web___in-brief",
   "version": "1.0.0",
   "private": true,
-  "description": "web____in-brief",
-  "author": "akorzun",
+  "description": "Brief notes about web",
+  "author": "Alesia Korzun <liskorzun@gmail.com>",
   "keywords": [
-    "gatsby"
+    "web",
+    "react",
+    "gatsby",
+    "typescript",
+    "javascript"
   ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run check"
+    ],
+    "{*.{json,md}}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck & npm run lint:fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+    "lint:fix": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --fix",
+    "lint:quiet": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx --quiet",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
   },
   "dependencies": {
     "gatsby": "^4.14.1",
@@ -24,6 +43,13 @@
     "@types/node": "^17.0.35",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.2",
+    "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   }
 }
