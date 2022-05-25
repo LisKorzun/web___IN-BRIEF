@@ -1,0 +1,341 @@
+---
+title: 'Gatsby: Essential Tools'
+date: '2022-03-15'
+cover: 'images/banner.jpg'
+description: 'Here is a big sample for MDX'
+tags:
+  - gatsby
+  - tools
+---
+
+This article contains only essential instructions with reference on official resources.
+Gatsby natively supports both JavaScript and TypeScript.
+Gatsby also supports the use of ESLint and Prettier to enforce code styling standards.
+
+Before you start, all you need is
+
+- Have a basic understanding of the key technologies needed to create a Gatsby site.
+- Install all the required software tools: Node.js (v14.15 or newer), Git, Gatsby command line interface (CLI) (v3 or newer), preferable IDE.
+- Create all the necessary accounts for deploying your site online: GitHab and Gatsby cloud accounts.
+
+Learn more about
+
+- [Development Environment](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+- [Javascript tooling](https://www.gatsbyjs.com/docs/how-to/local-development/javascript-tooling/)
+- [How Gatsby Works](https://www.gatsbyjs.com/docs/tutorial/)
+- [TypeScript and Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)
+- [Using ESLint](https://www.gatsbyjs.com/docs/how-to/custom-configuration/eslint/)
+- [Gatsby Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/)
+
+## Get Up and Running
+
+1. **Install the Gatsby CLI.**
+
+   ```shell
+   npm install -g gatsby-cli
+   ```
+
+2. **Create a Gatsby site.**
+
+   Create a new Gatsby site using the interactive setup wizard
+
+   ```shell
+   # Use the Gatsby CLI to create a new site, specifying the minimal JavaScript starter
+
+   gatsby new
+   # OR
+   npm init gatsby
+   ```
+
+3. **Start developing.**
+
+   Navigate into your new site’s directory and start it up.
+
+   ```shell
+   cd my-gatsby-site/
+
+   gatsby develop
+   # OR
+   npm run develop
+   ```
+
+4. **Open the code and start customizing.**
+
+   Your site is now running at http://localhost:8000!
+
+   Edit `src/pages/index.js` to see your site update in real-time!
+
+At this point, you’ve got a fully functional Gatsby website.
+
+## TypeScript
+
+- [Migrating to TypeScript](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/#migrating-to-typescript)
+- [Gatsby minimal TypeScript starter](https://github.com/gatsbyjs/gatsby/tree/master/starters/gatsby-starter-minimal-ts)
+
+  Since Gatsby natively supports JavaScript and TypeScript, you can change files from `.js/.jsx` to `.ts/.tsx` at any point to start adding types and gaining the benefits of a type system.
+
+1. **Install Typescript as `devDependencies`**
+
+   ```shell
+      npm install typescript @types/node @types/react @types/react-dom -D
+   ```
+2. **Add `tsconfig.json`**
+
+   ```shell
+      npx tsc --init
+   ```
+
+   Update tsconfig specifying essential options:
+   ```json
+      {
+        "include": ["./src/**/*"],
+        "compilerOptions": {
+          "target": "esnext",
+          "lib": ["dom", "esnext"],
+          "jsx": "react",
+          "module": "esnext",
+          "moduleResolution": "node",
+          "esModuleInterop": true,
+          "forceConsistentCasingInFileNames": true,
+          "strict": true,
+          "skipLibCheck": true
+        }
+      }
+      ```
+
+3. **Convert `.js/.jsx` to `.ts/.tsx` **
+
+4. **Rename `gatsby-*` files **
+    - `gatsby-node.js` to `gatsby-node.ts`
+    - `gatsby-config.js` to `gatsby-config.ts`
+    - `gatsby-browser.js` to `gatsby-browser.tsx`
+    - `gatsby-ssr.js` to `gatsby-ssr.tsx`
+
+
+[Use either pure CommonJS or pure ES6](https://www.gatsbyjs.com/docs/reference/release-notes/migrating-from-v1-to-v2/#convert-to-either-pure-commonjs-or-pure-es6)
+in `gatsby-*` files. Do not mix ES and CommonJS module syntax because it will cause failures.
+
+5. **Add a type check script to your `package.json`**
+
+   ```json
+      "typecheck": "tsc --noEmit"
+   ```
+
+At this point, you can run `typecheck` script and fix errors.
+
+# Prettier
+
+1. **Install [Prettier](https://prettier.io/) as `devDependencies`**
+
+```shell
+npm install prettier -D
+```
+
+2. **Add [Configuration file](https://prettier.io/docs/en/configuration.html)**
+
+```yaml
+# .prettierrc or .prettierrc.yaml
+
+trailingComma: "es5"
+printWidth: 120
+tabWidth: 2
+semi: false
+singleQuote: true
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. **Add Typescript Linting with ESLint Plugin Typescript**
+
+   - [`@typescript-eslint/eslint-plugin`](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin)
+
+   ```shell
+   npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin
+   ```
+
+   ```js
+       // .eslintrc
+
+       {
+         "parser": "@typescript-eslint/parser",
+           "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+           "plugins": ["@typescript-eslint", "react"],
+           "env": {
+             "browser": true,
+             "es6": true,
+             "node": true,
+             "commonjs": true
+           },
+           "settings": {
+             "react": {
+               "version": "detect"
+             }
+           },
+           "rules": {
+             "no-anonymous-exports-page-templates": "warn",
+             "limited-exports-page-templates": "warn",
+             "@typescript-eslint/no-var-requires": "off",
+             "@typescript-eslint/no-non-null-assertion": "off"
+           }
+       }
+   ```
+
+
+## ESLint Configuration
+
+- [Using ESLint](https://www.gatsbyjs.com/docs/how-to/custom-configuration/eslint/)
+- [gatsby-plugin-eslint](https://www.gatsbyjs.com/plugins/gatsby-plugin-eslint/)
+
+1.  **Install ESLint**
+
+    ```shell
+    npm install --save-dev gatsby-plugin-eslint eslint eslint-webpack-plugin
+    ```
+
+2.  **Create `.eslintrc` file in project root.**
+
+    ```js
+    // .eslintrc
+
+    // Gatsby's required rules
+    {
+      "rules": {
+        "no-anonymous-exports-page-templates": "warn",
+        "limited-exports-page-templates": "warn"
+      }
+    }
+    ```
+
+3.  **Add plugin into `gatsby-config.js`**
+
+    ```js
+    // gatsby-config.js
+
+    const path = require('path');
+    // Get paths of Gatsby's required rules, which as of writing is located at:
+    // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
+    // gatsby/src/utils/eslint-rules
+    const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
+
+    module.exports = {
+      plugins: [
+        // ...other plugins
+        {
+          resolve: 'gatsby-plugin-eslint',
+          options: {
+            // Gatsby required rules directory
+            rulePaths: [gatsbyRequiredRules],
+            // Default settings that may be ommitted or customized
+            stages: ['develop'],
+            extensions: ['js', 'jsx', 'ts', 'tsx'],
+            exclude: ['node_modules', 'bower_components', '.cache', 'public'],
+            // Any additional eslint-webpack-plugin options below
+            // ...
+          },
+        },
+      ],
+    };
+    ```
+
+4.  **Configure Basic React Linting with `eslint-plugin-react`**
+
+    ```shell
+    npm install --save-dev eslint-plugin-react babel-eslint
+    ```
+
+    ```js
+        // .eslintrc
+
+        {
+          "parser": "babel-eslint", // uses babel-eslint transforms
+          "extends": [
+                      "eslint:recommended", // use recommended configs
+                      "plugin:react/recommended"
+                    ],
+          "plugins": ["react"],
+          "env": {
+                        "browser": true,
+                        "es6": true,
+                        "node": true,
+                        "commonjs": true
+                      },
+          "settings": {
+            "react": {
+              "version": "detect" // detect react version
+            }
+          },
+          "rules": {
+            "no-anonymous-exports-page-templates": "warn",
+            "limited-exports-page-templates": "warn"
+          }
+        }
+    ```
+
+5.  **Add a lint script to your `package.json`**
+
+    ```json
+       "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
+    ```
+
+
+
+## Prettier
+
+
+2. **Add a format script to your `package.json`**
+
+   ```json
+      "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+   ```
+
+3. **Add Prettier plugin to with ESLint**
+
+   ```shell
+   npm install --save-dev eslint-plugin-prettier
+   ```
+
+   ```js
+          // .eslintrc
+
+          {
+            "parser": "@typescript-eslint/parser",
+            "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+            "plugins": ["@typescript-eslint", "react", "prettier"],
+            "env": {
+              "browser": true,
+              "es6": true,
+              "node": true,
+              "commonjs": true
+            },
+            "settings": {
+              "react": {
+                "version": "detect"
+              }
+            },
+            "rules": {
+              "no-anonymous-exports-page-templates": "warn",
+              "limited-exports-page-templates": "warn",
+              "@typescript-eslint/no-var-requires": "off",
+              "@typescript-eslint/no-non-null-assertion": "off"
+            }
+          }
+
+   ```
+
+## Gitignore
+
+Basic configuration
+`shell // put here `
