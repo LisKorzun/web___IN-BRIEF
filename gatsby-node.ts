@@ -7,14 +7,24 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
   const SORT = '{ fields: frontmatter___date, order: DESC }'
 
   const postTemplate = path.resolve('src/templates/post.tsx')
+  const tagTemplate = path.resolve('src/templates/tag.tsx')
 
   const result = await graphql(`
   {
-  posts: allMdx(limit: ${LIMIT}, sort: ${SORT}) {
-        nodes {
+    posts: allMdx(limit: ${LIMIT}, sort: ${SORT}, filter: {fileAbsolutePath: {regex: "/posts/"}}) {
+      nodes {
+        id
+        slug
+      }
+    }
+    tags: allMdx(filter: {fileAbsolutePath: {regex: "/tags/"}}) {
+      edges {
+        node {
           slug
+          id
         }
       }
+    }
   }
   `)
 
@@ -24,12 +34,21 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
   }
 
   const posts = result.data.posts.nodes
+  const tags = result.data.tags.edges
 
-  posts.forEach(({ slug }) => {
+  posts.forEach(({ slug, id }) => {
     createPage({
       path: slug,
       component: postTemplate,
-      context: { slug: slug },
+      context: { id },
+    })
+  })
+
+  tags.forEach(({ node: { slug, id } }) => {
+    createPage({
+      path: `t/${slug}`,
+      component: tagTemplate,
+      context: { id },
     })
   })
 }

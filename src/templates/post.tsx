@@ -14,8 +14,8 @@ const Post: FC<PageProps<DataType>> = (props) => {
 }
 
 export const pageQuery = graphql`
-  query ($slug: String!) {
-    mdx(slug: { eq: $slug }) {
+  query ($id: String!) {
+    mdx(id: { eq: $id }) {
       body
     }
   }

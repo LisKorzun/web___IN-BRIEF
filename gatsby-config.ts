@@ -11,6 +11,13 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: `tags`,
+        path: path.resolve(`content/tags`),
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: `posts`,
         path: path.resolve(`content/posts`),
       },
