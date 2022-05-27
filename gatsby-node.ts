@@ -22,6 +22,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
         node {
           slug
           id
+          frontmatter {
+            name
+          }
         }
       }
     }
@@ -44,11 +47,19 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions, graphql,
     })
   })
 
-  tags.forEach(({ node: { slug, id } }) => {
-    createPage({
-      path: `t/${slug}`,
-      component: tagTemplate,
-      context: { id },
-    })
-  })
+  tags.forEach(
+    ({
+      node: {
+        slug,
+        id,
+        frontmatter: { name },
+      },
+    }) => {
+      createPage({
+        path: `t/${slug}`,
+        component: tagTemplate,
+        context: { id, name },
+      })
+    }
+  )
 }

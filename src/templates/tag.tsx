@@ -9,21 +9,37 @@ type DataType = {
       related: string[]
     }
   }
+  allMdx: {
+    nodes: { slug: string; id: string }[]
+    totalCount: number
+  }
 }
 
 const Tag: FC<PageProps<DataType>> = (props) => {
   console.log(props)
-  return <article>{props.data.mdx.frontmatter.name}</article>
+  return <article>{`${props.data.mdx.frontmatter.name} - ${props.data.allMdx.totalCount}`}</article>
 }
 
 export const pageQuery = graphql`
-  query ($id: String!) {
+  query ($id: String!, $name: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
         name
         description
         related
       }
+    }
+    allMdx(filter: { fileAbsolutePath: { regex: "/posts/" }, frontmatter: { tags: { in: [$name] } } }) {
+      nodes {
+        id
+        slug
+        frontmatter {
+          description
+          title
+          tags
+        }
+      }
+      totalCount
     }
   }
 `
