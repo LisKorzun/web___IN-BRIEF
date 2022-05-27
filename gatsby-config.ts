@@ -1,12 +1,24 @@
+import path from 'path'
 import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://webinbrief.gatsbyjs.io`,
   },
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: `posts`,
+        path: path.resolve(`content/posts`),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {},
+    },
     {
       resolve: 'gatsby-plugin-gatsby-cloud',
       options: {
