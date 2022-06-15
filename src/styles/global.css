@@ -1,5 +1,7 @@
 html {
   box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
   width: 100%;
 }
 
@@ -23,20 +25,168 @@ body {
   overscroll-behavior: none;
   scroll-behavior: smooth;
   font-weight: 300;
+  font-size: calc(1.7rem + 0.2vw);
 }
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/*
+  Text-level semantics
+  ====================
+*/
 
 h1 {
   color: var(--color-primary);
-  margin: 50px 0;
   font-family: 'Genos', sans-serif;
-  font-size: 70px;
+  font-size: calc(3.5rem + 4vw);
   font-weight: 400;
+  margin: 5rem 0;
+  text-transform: capitalize;
+}
+
+h2 {
+  font-size: calc(1.8rem + 1vw);
+  margin: 2.5rem 0;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: calc(1.8rem + 0.5vw);
+  margin: 2rem 0;
+  font-weight: 700;
+}
+h4 {
+  font-size: calc(1.8rem + 0.2vw);
+  margin: 2rem 0;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: calc(1.2rem + 0.2vw);
+  margin: 1.5rem 0;
+  font-weight: 500;
+  color: rgb(156, 172, 174);
+}
+
+h6 {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  font-weight: 500;
+  color: rgb(156, 172, 174);
+  text-transform: uppercase;
+  letter-spacing: 0.07rem;
+  line-height: 100%;
+  pointer-events: all;
 }
 
 p {
-  line-height: 2.5;
-  font-size: 20px;
+  font-size: calc(1.7rem + 0.2vw);
+  margin: 1.2rem 0;
+  font-weight: 300;
+  line-height: calc(1.7em + 0.2vw);
+  word-break: break-word;
+  text-align: justify;
+  width: 100%;
 }
+
+a {
+  text-decoration: none;
+  margin: 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.2em;
+}
+
+/*
+  Lists
+  =====
+  */
+ul,
+ol {
+  margin: 0;
+}
+
+li {
+  margin: 1.2rem 0;
+}
+
+li p {
+  margin: 0 0 1.2rem;
+}
+
+ul li {
+  list-style-type: circle;
+  line-height: 1;
+}
+/*
+  Tabular data
+  ============
+  */
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  min-width: 4rem;
+}
+
+thead tr {
+  text-align: left;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+tbody tr {
+  border-bottom: var(--color-background);
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: var(--color-background);
+}
+
+th,
+td {
+  padding: 12px 15px;
+  min-width: 12rem;
+}
+
 
 main {
   height: 2000px;

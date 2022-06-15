@@ -68,12 +68,12 @@ const Tag: FC<PageProps<DataType>> = (props) => {
               <Link to={`/${slug}`}>{title}</Link>
             </h2>
             <p>{description}</p>
-            <p>{date}</p>
-            <div>
+            <h5>{date}</h5>
+            <h6>
               {map(tags, (tag, key) => (
                 <span key={key}>🔖 {tag}</span>
               ))}
-            </div>
+            </h6>
           </div>
         ))}
       </div>

@@ -22,17 +22,17 @@ You can play around with Markdown on our [live demo page](http://www.markdown-he
 
 ## Headers
 
-# H1
+# H1 Combined emphasis with
 
-## H2
+## H2 Combined emphasis with
 
-### H3
+### H3 Combined emphasis with
 
-#### H4
+#### H4 Combined emphasis with
 
-##### H5
+##### H5 Combined emphasis with
 
-###### H6
+###### H6 Combined emphasis with
 
 ## Emphasis
 
@@ -69,26 +69,6 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 There are two ways to create links.
 
-```
-[I'm an inline-style link](https://www.google.com)
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself]
-
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-```
-
 [I'm an inline-style link](https://www.google.com)
 
 [I'm a reference-style link][arbitrary case-insensitive reference text]
@@ -109,32 +89,16 @@ Some text to show that the reference links can follow later.
 
 ## Images
 
-```
-![Alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Title Text')
-```
-
 Here's a logo (hover to see the title text):
 ![Alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Title Text')
 
-```
 ![big picture that applies to water or nature](https://source.unsplash.com/1600x900/?nature,water)
-```
-
-![big picture that applies to water or nature](https://source.unsplash.com/1600x900/?nature,water)
-
-```
-![Local picture](./images/banner.jpg)
-```
 
 ![Local picture](./images/banner.jpg)
 
 ## Code and Syntax Highlighting
 
 Code blocks are part of the Markdown spec, but syntax highlighting isn't. However, many renderers -- like Github's and _Markdown Here_ -- support syntax highlighting. _Markdown Here_ supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the [highlight.js demo page](http://softwaremaniacs.org/media/soft/highlight/test.html).
-
-```
-Inline `code` has `back-ticks around` it.
-```
 
 Inline `code` has `back-ticks around` it.
 
@@ -147,16 +111,12 @@ alert(s);
 ```
 
 ```diff-javascript
-const App = () => {
--	return <div>This line was removed</div>;
-+	return <div>This line was added</div>;
-}
+    const App = () => {
+    -	return <div>This line was removed</div>;
+    +	return <div>This line was added</div>;
+    }
 ```
 
-```
-No language indicated, so no syntax highlighting in Markdown Here (varies on Github).
-But let's throw in a <b>tag</b>.
-```
 
 Again, to see what languages are available for highlighting, and how to write those language names, see the [highlight.js demo page](http://softwaremaniacs.org/media/soft/highlight/test.html).
 
@@ -164,31 +124,9 @@ Again, to see what languages are available for highlighting, and how to write th
 
 Tables aren't part of the core Markdown spec, but they are part of GFM and _Markdown Here_ supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
 
-```markdown
-Colons can be used to align columns.
-
-| Tables        |      Are      |  Cool |
-| ------------- | :-----------: | ----: |
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      |   centered    |   $12 |
-| zebra stripes |   are neat    |    $1 |
-```
-
-| Tables        |      Are      |  Cool |
-| ------------- | :-----------: | ----: |
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      |   centered    |   $12 |
-| zebra stripes |   are neat    |    $1 |
-
-```
 The outer pipes (|) are optional, and you do not need to make the raw Markdown line up prettily.
 You can also use inline Markdown.
 
-| Markdown | Less      | Pretty     | | |
-| -------- | --------- | ---------- | ---------- | ---------- |
-| _Still_  | `renders` | **nicely** | | |
-| 1        | 2         | 3          | | |
-```
 
 | Markdown | Less      | Pretty     | Pretty     | Pretty     |
 | -------- | --------- | ---------- | ---------- | ---------- |
@@ -196,11 +134,6 @@ You can also use inline Markdown.
 | 1        | 2         | 3          | 3          | 3          |
 
 ## Blockquotes
-
-```markdown
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
-```
 
 > Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
@@ -210,22 +143,6 @@ Quote break.
 > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
 
 ## Horizontal Rule
-
-```markdown
-Three or more...
-
----
-
-Hyphens
-
----
-
-Asterisks
-
----
-
-Underscores
-```
 
 ---
 
@@ -240,21 +157,5 @@ Asterisks
 Underscores
 
 ## YouTube Videos
-
-```markdown
-# Look at this Video:
-
-`video: https://www.youtube.com/embed/2Xc9gXyf2G4`
-`youtube: https://www.youtube.com/watch?v=2Xc9gXyf2G4`
-`youtube: 2Xc9gXyf2G4`
-
-`vimeo: https://vimeo.com/5299404`
-`vimeo: 5299404`
-
-`videoPress: https://videopress.com/v/kUJmAcSf`
-`videoPress: kUJmAcSf`
-
-`twitch: https://player.twitch.tv/?channel=dakotaz`
-```
 
 `video: https://www.youtube.com/embed/2Xc9gXyf2G4`
