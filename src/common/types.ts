@@ -15,10 +15,13 @@ export interface IPostNode {
 export interface ITagNode {
   id: string
   slug: string
+  body: string
   frontmatter: {
+    key: string
     name: string
     description: string
     related: string[]
     cover: ImageDataLike
+    logo: ImageDataLike
   }
 }

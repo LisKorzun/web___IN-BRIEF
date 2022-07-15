@@ -17,11 +17,18 @@ export const tagFields = graphql`
   fragment tagFields on Mdx {
     id
     slug
+    body
     frontmatter {
+      key
       name
       related
       description
       cover {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+      logo {
         childImageSharp {
           gatsbyImageData
         }

@@ -1,6 +1,7 @@
 import React, { FC, useMemo, useState } from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
 
@@ -21,6 +22,7 @@ const Tag: FC<PageProps<DataType>> = (props) => {
   const {
     data: {
       tag: {
+        body,
         frontmatter: { name, description, cover },
       },
       posts: { totalCount, nodes },
@@ -52,6 +54,7 @@ const Tag: FC<PageProps<DataType>> = (props) => {
       </h1>
       <GatsbyImage image={image} alt="" />
       <p>{description}</p>
+      <MDXRenderer>{body}</MDXRenderer>
       <div>
         {map(uniqTags, (tag, key) => (
           <pre
