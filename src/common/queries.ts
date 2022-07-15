@@ -21,6 +21,11 @@ export const tagFields = graphql`
       name
       related
       description
+      cover {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
     }
   }
 `

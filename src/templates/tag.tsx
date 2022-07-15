@@ -1,5 +1,6 @@
 import React, { FC, useMemo, useState } from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
 
@@ -20,11 +21,12 @@ const Tag: FC<PageProps<DataType>> = (props) => {
   const {
     data: {
       tag: {
-        frontmatter: { name, description },
+        frontmatter: { name, description, cover },
       },
       posts: { totalCount, nodes },
     },
   } = props
+  const image = getImage(cover)!
 
   const uniqTags = useMemo(() => filter(getUniqueTags(nodes), (i) => i !== name), [name, nodes])
 
@@ -48,6 +50,7 @@ const Tag: FC<PageProps<DataType>> = (props) => {
       <h1>
         {name} - {totalCount}
       </h1>
+      <GatsbyImage image={image} alt="" />
       <p>{description}</p>
       <div>
         {map(uniqTags, (tag, key) => (

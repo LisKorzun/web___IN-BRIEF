@@ -1,3 +1,5 @@
+import { ImageDataLike } from 'gatsby-plugin-image'
+
 export interface IPostNode {
   id: string
   slug: string
@@ -6,6 +8,7 @@ export interface IPostNode {
     date: string
     description: string
     tags: string[]
+    cover: ImageDataLike
   }
 }
 
@@ -16,5 +19,6 @@ export interface ITagNode {
     name: string
     description: string
     related: string[]
+    cover: ImageDataLike
   }
 }
