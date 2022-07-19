@@ -88,11 +88,11 @@ const Tag: FC<PageProps<DataType>> = (props) => {
 }
 
 export const pageQuery = graphql`
-  query ($id: String!, $name: String!) {
+  query ($id: String!, $key: String!) {
     tag: mdx(id: { eq: $id }) {
       ...tagFields
     }
-    posts: allMdx(filter: { fileAbsolutePath: { regex: "/posts/" }, frontmatter: { tags: { in: [$name] } } }) {
+    posts: allMdx(filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { tags: { in: [$key] } } }) {
       nodes {
         ...postFields
       }
