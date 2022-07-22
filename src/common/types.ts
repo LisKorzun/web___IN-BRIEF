@@ -1,4 +1,17 @@
-import { ImageDataLike } from 'gatsby-plugin-image'
+import { ImageDataLike, IGatsbyImageData } from 'gatsby-plugin-image'
+
+export type FullImageDataLike = {
+  childImageSharp: {
+    gatsbyImageData: IGatsbyImageData
+    fluid: {
+      base64: string
+      tracedSVG: string
+      srcWebp: string
+      originalImg: string
+      originalName: string
+    }
+  }
+}
 
 export interface IPostNode {
   id: string
@@ -18,10 +31,11 @@ export interface ITagNode {
   body: string
   frontmatter: {
     key: string
-    name: string
+    title: string
     description: string
+    colorRGB: string
     related: string[]
     cover: ImageDataLike
-    logo: ImageDataLike
+    logo: FullImageDataLike
   }
 }
