@@ -20,17 +20,23 @@ export const tagFields = graphql`
     body
     frontmatter {
       key
-      name
+      title
       related
       description
+      colorRGB
       cover {
         childImageSharp {
           gatsbyImageData
+          fluid {
+            srcWebp
+          }
         }
       }
       logo {
         childImageSharp {
-          gatsbyImageData
+          fluid {
+            srcWebp
+          }
         }
       }
     }

@@ -31,7 +31,7 @@ body {
 hr {
   border: 0;
   height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-border);
 }
 
 /*
@@ -40,7 +40,6 @@ hr {
 */
 
 h1 {
-  color: var(--color-primary);
   font-family: 'Genos', sans-serif;
   font-size: calc(3.5rem + 4vw);
   font-weight: 400;
@@ -98,7 +97,6 @@ a {
   margin: 0;
   cursor: pointer;
   font-weight: 500;
-  color: var(--color-primary);
 }
 
 abbr[title] {
@@ -185,11 +183,6 @@ th,
 td {
   padding: 12px 15px;
   min-width: 12rem;
-}
-
-
-main {
-  height: 2000px;
 }
 
 footer {
