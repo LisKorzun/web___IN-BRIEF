@@ -1,12 +1,20 @@
 import React, { FC, useMemo, useState } from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
-import { getImage, GatsbyImage } from 'gatsby-plugin-image'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import map from 'lodash/map'
+import noop from 'lodash/noop'
 import filter from 'lodash/filter'
 
 import { IPostNode, ITagNode } from '../common'
 import { getUniqueTags } from '../utils/posts'
+import {
+  SFilterCell,
+  STagBanner,
+  STagContent,
+  STagFilter,
+  SContentContainer,
+  SPostCard,
+  STagBannerLine,
+} from '../components'
 
 type DataType = {
   tag: ITagNode
@@ -22,67 +30,66 @@ const Tag: FC<PageProps<DataType>> = (props) => {
   const {
     data: {
       tag: {
-        body,
-        frontmatter: { name, description, cover },
+        frontmatter: { key, title, colorRGB, logo },
       },
-      posts: { totalCount, nodes },
+      posts: { nodes },
     },
   } = props
-  const image = getImage(cover)!
 
-  const uniqTags = useMemo(() => filter(getUniqueTags(nodes), (i) => i !== name), [name, nodes])
+  const uniqTags = useMemo(() => filter(getUniqueTags(nodes), (i) => i !== key), [key, nodes])
 
   const onTagClick = (tag: string) => () => {
-    if (appliedFilters.includes(tag)) return
-    setAppliedFilters((prev) => [...prev, tag])
-  }
-  const removeFilter = (tag: string) => (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setAppliedFilters((prev) => filter(prev, (i) => i !== tag))
+    if (appliedFilters.includes(tag)) {
+      setAppliedFilters((prev) => filter(prev, (i) => i !== tag))
+    } else {
+      setAppliedFilters((prev) => [...prev, tag])
+    }
   }
 
   const filteredPosts = useMemo(() => {
     return filter(nodes, (n) => appliedFilters.every((i) => n.frontmatter.tags.includes(i)))
   }, [appliedFilters, nodes])
 
-  const isTagActive = (tag: string) => (getUniqueTags(filteredPosts).includes(tag) ? 1 : 0.3)
-
+  const isTagActive = (tag: string) => getUniqueTags(filteredPosts).includes(tag)
   return (
     <>
-      <h1>
-        {name} - {totalCount}
-      </h1>
-      <GatsbyImage image={image} alt="" />
-      <p>{description}</p>
-      <MDXRenderer>{body}</MDXRenderer>
-      <div>
-        {map(uniqTags, (tag, key) => (
-          <pre
-            key={key}
-            onClick={onTagClick(tag)}
-            style={{ fontWeight: appliedFilters.includes(tag) ? 800 : 400, opacity: isTagActive(tag) }}
-          >
-            {tag}
-            <span onClick={removeFilter(tag)}>{appliedFilters.includes(tag) ? '✖️' : ''}️</span>
-          </pre>
-        ))}
-      </div>
-      <div>
-        {map(filteredPosts, ({ id, slug, frontmatter: { title, description, date, tags } }) => (
-          <div key={id}>
-            <h2>
-              <Link to={`/${slug}`}>{title}</Link>
-            </h2>
-            <p>{description}</p>
-            <h5>{date}</h5>
-            <h6>
-              {map(tags, (tag, key) => (
-                <span key={key}>🔖 {tag}</span>
-              ))}
-            </h6>
+      <STagBanner color={colorRGB} image={logo.childImageSharp.fluid.srcWebp} />
+      <STagBannerLine color={colorRGB} />
+      <STagContent>
+        <h1>{title}</h1>
+        <SContentContainer>
+          <div>
+            {map(filteredPosts, ({ id, slug, frontmatter: { title, description, date, tags } }) => (
+              <SPostCard key={id}>
+                <h6>
+                  {map(tags, (tag, key) => (
+                    <span key={key}>{tag}</span>
+                  ))}
+                </h6>
+                <h2>
+                  <Link to={`/${slug}`}>{title}</Link>
+                </h2>
+                <p>{description}</p>
+                <h5>{date}</h5>
+                <hr />
+              </SPostCard>
+            ))}
           </div>
-        ))}
-      </div>
+          <STagFilter>
+            {map(uniqTags, (tag, key) => (
+              <SFilterCell
+                key={key}
+                onClick={isTagActive(tag) ? onTagClick(tag) : noop}
+                selected={appliedFilters.includes(tag)}
+                available={isTagActive(tag)}
+                color={colorRGB}
+              >
+                {tag}
+              </SFilterCell>
+            ))}
+          </STagFilter>
+        </SContentContainer>
+      </STagContent>
     </>
   )
 }

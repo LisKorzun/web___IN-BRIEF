@@ -7,6 +7,11 @@ import { useColorModeContext } from '../store'
 const SColorModeToggle = styled.label<{ mode: TModes | null }>`
   visibility: ${({ mode }) => (mode ? 'visible' : 'hidden')};
   transition: visibility 250ms;
+  writing-mode: vertical-rl;
+  align-self: end;
+  justify-self: center;
+  padding-bottom: 40px;
+  text-transform: uppercase;
   && input {
     display: none;
   }
