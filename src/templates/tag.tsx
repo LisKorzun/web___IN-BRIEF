@@ -14,6 +14,8 @@ import {
   SContentContainer,
   SPostCard,
   STagBannerLine,
+  SAsideContainer,
+  SFilterHeader,
 } from '../components'
 
 type DataType = {
@@ -62,8 +64,10 @@ const Tag: FC<PageProps<DataType>> = (props) => {
             {map(filteredPosts, ({ id, slug, frontmatter: { title, description, date, tags } }) => (
               <SPostCard key={id}>
                 <h6>
-                  {map(tags, (tag, key) => (
-                    <span key={key}>{tag}</span>
+                  {map(tags, (tag, ind) => (
+                    <Link to={`/t/${tag}`} key={ind}>
+                      {tag}
+                    </Link>
                   ))}
                 </h6>
                 <h2>
@@ -75,19 +79,25 @@ const Tag: FC<PageProps<DataType>> = (props) => {
               </SPostCard>
             ))}
           </div>
-          <STagFilter>
-            {map(uniqTags, (tag, key) => (
-              <SFilterCell
-                key={key}
-                onClick={isTagActive(tag) ? onTagClick(tag) : noop}
-                selected={appliedFilters.includes(tag)}
-                available={isTagActive(tag)}
-                color={colorRGB}
-              >
-                {tag}
-              </SFilterCell>
-            ))}
-          </STagFilter>
+          <SAsideContainer>
+            <SFilterHeader>
+              <h4>Filter by topic</h4>
+              <div>{filteredPosts.length}</div>
+            </SFilterHeader>
+            <STagFilter>
+              {map(uniqTags, (tag, key) => (
+                <SFilterCell
+                  key={key}
+                  onClick={isTagActive(tag) ? onTagClick(tag) : noop}
+                  selected={appliedFilters.includes(tag)}
+                  available={isTagActive(tag)}
+                  color={colorRGB}
+                >
+                  {tag}
+                </SFilterCell>
+              ))}
+            </STagFilter>
+          </SAsideContainer>
         </SContentContainer>
       </STagContent>
     </>

@@ -31,7 +31,7 @@ export const STagBanner = styled.div<{
 `
 
 export const STagBannerLine = styled.div`
-  width: 7rem;
+  //width: 7rem;
   border-top-style: solid;
   border-top-width: 3px;
   border-color: var(--color-secondary-text);

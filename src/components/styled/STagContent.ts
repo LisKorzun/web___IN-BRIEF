@@ -18,13 +18,48 @@ export const STagContent = styled.div`
 export const SContentContainer = styled.div`
   display: grid;
   grid-template-columns: auto 20vw;
-  column-gap: 8rem;
+  column-gap: 25rem;
 `
-
+export const SAsideContainer = styled.div`
+  height: fit-content;
+  position: sticky;
+  top: 20rem;
+`
 export const STagFilter = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: fit-content;
+`
+export const SFilterHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 calc(var(--page-gutter) * -1) 2rem 0;
+  position: relative;
+  h4 {
+    color: var(--color-border);
+    font-weight: 900;
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--color-border);
+    content: ' ';
+  }
+  div {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 80px;
+    color: var(--color-border);
+    font-weight: 900;
+    font-family: 'Genos', sans-serif;
+    line-height: 0.5;
+  }
 `
 
 export const SFilterCell = styled.div<{
@@ -37,11 +72,9 @@ export const SFilterCell = styled.div<{
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  color: var(--color-secondary-text);
+  color: var(--color-hint-text);
   font-weight: var(--font-weight-semi-bold);
   background-color: var(--color-grey100);
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
   cursor: not-allowed;
   opacity: 0.3;
 
@@ -69,9 +102,10 @@ export const SFilterCell = styled.div<{
 
 export const SPostCard = styled.div`
   & h6 {
-    color: var(--color-hint-text);
     margin: 2rem 0;
-    span {
+    font-weight: 400;
+    a {
+      color: var(--color-grey200);
       padding-right: 2rem;
     }
   }

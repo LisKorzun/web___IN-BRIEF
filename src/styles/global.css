@@ -26,6 +26,8 @@ body {
   scroll-behavior: smooth;
   font-weight: var(--font-weight-normal);
   font-size: calc(1.7rem + 0.2vw);
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
 }
 
 hr {

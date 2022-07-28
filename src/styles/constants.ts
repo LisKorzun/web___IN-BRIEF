@@ -17,8 +17,8 @@ export const COLORS: TColors = {
     dark: '#1E293B ', // rgb(30, 41, 59)
   },
   grey200: {
-    light: '#e6e9ee',
-    dark: '#4b4c53',
+    light: '#A7AABD', // rgb(230, 233, 238)
+    dark: '#737687', // rgb(115, 118, 135)
   },
   grey300: {
     light: '#6E748B', // rgb(100, 116, 139)
